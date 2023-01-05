@@ -11,12 +11,15 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
-app.use(require('./routes/record'));
+// app.use(require('./routes/record'));
+app.use(require('./routes/pasien'));
+app.use(require('./routes/rekam_medik'));
+app.use(require('./routes/dokter'));
 
 // Global error handling
-app.use(function (err, _req, res) {
+app.use(function (err, req, res, _next) {
   console.error(err.stack);
-  res.status(500).send('Something broke!');
+  res.status(500).json('Something broke!');
 });
 
 // perform a database connection when the server starts
